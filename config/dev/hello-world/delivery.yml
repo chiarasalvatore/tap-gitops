@@ -31,7 +31,7 @@ spec:
           appliveview-sample/app-live-view-connector-boot
           appliveview-sample/app-live-view-appflavours-boot
           appliveview-sample/app-live-view-systemproperties
-        developer.apps.tanzu.vmware.com/image-source-digest: index.docker.io/chiarasalvatore02/demo-tap:latest@sha256:2e6016910e941ce6e8a863fbd3025282dffeaeaa311d963e60ad372e3587a157
+        developer.apps.tanzu.vmware.com/image-source-digest: index.docker.io/chiarasalvatore02/demo-tap:latest@sha256:d0438c0e933d34b8177b53ed92355363ba603b841180c32e96c2366e78907895
         developer.conventions/target-containers: workload
       labels:
         app.kubernetes.io/component: run
@@ -55,7 +55,7 @@ spec:
           value: "9005"
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: europe-west8-docker.pkg.dev/csplayground-354114/tap-registry/tanzu/hello-world-dev@sha256:8d420010487fcbefbb1d28d956f341a6783e9b3f9687d87c9aec10fe07a47224
+        image: europe-west8-docker.pkg.dev/csplayground-354114/tap-registry/tanzu/hello-world-dev@sha256:52856cd178545c694de091d808b2a9c26d6bf2aeec48823dc9bee3ab22672047
         livenessProbe:
           httpGet:
             path: /livez
