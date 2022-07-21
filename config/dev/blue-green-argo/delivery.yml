@@ -55,7 +55,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: europe-west8-docker.pkg.dev/csplayground-354114/tap-registry/tanzu/blue-green-argo-dev@sha256:fece367afd279add42e4e9dbda07a435369f6d4ee6db1d13a48bc4656817db30
+        image: europe-west8-docker.pkg.dev/csplayground-354114/tap-registry/tanzu/blue-green-argo-dev@sha256:bcda16cfcbf8640e42cc46c408ba643dc3f97b921ebfece1730595270728842d
         name: workload
         ports:
         - containerPort: 8080
