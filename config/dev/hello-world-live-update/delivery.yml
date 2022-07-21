@@ -12,10 +12,16 @@ spec:
   template:
     metadata:
       annotations:
+        apps.tanzu.vmware.com/debug: "true"
+        apps.tanzu.vmware.com/live-update: "true"
+        autoscaling.knative.dev/maxScale: "1"
         autoscaling.knative.dev/minScale: "1"
         boot.spring.io/actuator: http://:8081/actuator
         boot.spring.io/version: 2.7.1
         conventions.apps.tanzu.vmware.com/applied-conventions: |-
+          developer-conventions/debug-convention
+          developer-conventions/live-update-convention
+          developer-conventions/add-source-image-label
           spring-boot-convention/spring-boot
           spring-boot-convention/spring-boot-graceful-shutdown
           spring-boot-convention/spring-boot-web
@@ -25,6 +31,7 @@ spec:
           appliveview-sample/app-live-view-connector-boot
           appliveview-sample/app-live-view-appflavours-boot
           appliveview-sample/app-live-view-systemproperties
+        developer.apps.tanzu.vmware.com/image-source-digest: index.docker.io/aledivu/demo-tap:latest@sha256:b0f74c176ac54d272165266be933fbc7836b39ae490f9845387fa76f8848bd8e
         developer.conventions/target-containers: workload
       labels:
         app.kubernetes.io/component: run
@@ -42,9 +49,13 @@ spec:
       - env:
         - name: APP_MESSAGE
           value: World!
+        - name: BPL_DEBUG_ENABLED
+          value: "true"
+        - name: BPL_DEBUG_PORT
+          value: "9005"
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: europe-west8-docker.pkg.dev/csplayground-354114/tap-registry/tanzu/hello-world-live-update-dev@sha256:b7aef5473caf7f68e6158d0ce4d358915f3e281745c144ba8d853b22537d4f32
+        image: europe-west8-docker.pkg.dev/csplayground-354114/tap-registry/tanzu/hello-world-live-update-dev@sha256:e6376ede3e0002652efbebb829c6c61520e87080f294128753977a00d72209b1
         livenessProbe:
           httpGet:
             path: /livez
